@@ -1,23 +1,23 @@
 body {
     overflow: hidden;
 }
- 
+
 .main-table {
     width: 100vw;
-    height: 100vh; 
+    height: 100vh;
     border-collapse: collapse;
     border-spacing: 0;
     padding: 0;
     margin: 0;
 }
 
-.main-table td {  
+.main-table td {
     padding: 0;
     margin: 0;
 }
 
 .holder {
-    position: relative; 
+    position: relative;
 }
 
 .holder.main {
@@ -38,4 +38,9 @@ body {
 .holder.bottom-left {
     width: 25vw;
     height: 25vh;
+}
+
+.video-main {
+    width: 99vw;
+    height: 93vh;
 }

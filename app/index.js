@@ -39,6 +39,12 @@ ipcMain.handle('set-value', async (event, key, value) => {
   return true
 })
 
+ipcMain.handle('camera-change', async (event, value) => {
+  console.log(value)
+   startServer(value);
+})
+
+
 const menuOpt = [
   {
     label: 'Preference',
@@ -80,13 +86,13 @@ function createWindow() {
     simpleFullscreen: true
   })
 
-  store.onDidAnyChange(x => {
-    startServer();
-  });
+  // store.onDidAnyChange(x => {
+  //   startServer();
+  // });
 
-  startServer();
+  //startServer();
 
-  win.loadFile(path.join('src', 'index.html'))
+  win.loadFile(path.join('src', 'index2.html'))
 }
 
 function createSettingWindow() {
@@ -103,7 +109,7 @@ function createSettingWindow() {
   win.loadFile(path.join('src', 'setting.html'))
 }
 
-function startServer() {
+function startServer(item) {
   server.init({
     FFMPEG: store.get('FFMPEG'),
     USER: store.get('USER'),
@@ -111,7 +117,7 @@ function startServer() {
     IPADDRESS: store.get('IPADDRESS'),
     PORT: store.get('PORT')
   });
-  server.start();
+  server.start(item);
 }
 
 app.whenReady().then(() => {

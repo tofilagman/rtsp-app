@@ -2,11 +2,11 @@ const Stream = require('./src/server/lib/videoStream');
  
 var opt = {};
   
-const start = async () => { 
+const start = async (item) => { 
     stopStream();
-    for (i = 1; i <= 8; i++) {
-        startStream(i);
-    }
+    //for (i = 1; i <= 8; i++) {
+        startStream(item);
+    //}
 }
 
 const init = (setting) => { 
@@ -19,8 +19,8 @@ const startStream = (index) => {
     const nt = setTimeout(() => {
         clearTimeout(nt);
 
-        const url = `rtsp://${opt.USER}:${opt.PASSWORD}@${opt.IPADDRESS}:${opt.PORT}/cam/realmonitor?channel=${index}&subtype=0&unicast=true`;
-        const wsport = 9990 + index;
+        const url = `rtsp://${opt.USER}:${opt.PASSWORD}@${opt.IPADDRESS}:${opt.PORT}/cam/realmonitor?channel=${index}&subtype=0`;
+        const wsport = 9999;
         const port = wsport + 1000;
 
         const stream = new Stream({

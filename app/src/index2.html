@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>RTSP App</title>
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="mb-3 mt-3">
+            <select class="form-select" aria-label="Default select example" id="camera-opt">
+                <option selected>Open this select menu</option>
+                <option value="1">1st Floor Stair</option>
+                <option value="2">1st Floor Common Area</option>
+                <option value="3">Three</option>
+                <option value="4">2nd Floor Door</option>
+                <option value="5">Five</option>
+                <option value="6">2nd Floor Outside</option>
+                <option value="7">Gate Outside</option>
+                <option value="8">3rd Floor Room</option>
+            </select>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <canvas id="canvas-1" class="video-main"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="lib/jsmpeg.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap/bootstrap.min.js"></script>
+<script>
+    const mpc = [];
+
+    const playAll = () => {
+        mpc.push(new JSMpeg.Player('ws://localhost:9999', {
+            canvas: document.getElementById('canvas-1')
+        }));
+    }
+
+    const stopAll = () => {
+        for (p of mpc)
+            p.destroy();
+        mpc.splice(0, mpc.length);
+    }
+
+    playAll();
+
+    document.getElementById('camera-opt').addEventListener('change', function (evt) {
+        stopAll();
+        playAll();
+    });
+
+</script>
+
+</html>
