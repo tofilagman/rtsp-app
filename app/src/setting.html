@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>RTSP App Setting</title>
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <form>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Source</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="IP Address" aria-label="IP Address" id="ipaddress">
+                    <span class="input-group-text">:</span>
+                    <input type="number" class="form-control" placeholder="Port" aria-label="Port" id="port">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Credentials</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" id="username">
+                    <span class="input-group-text">@</span>
+                    <input type="password" class="form-control" placeholder="Password" aria-label="Password" id="password">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">FFMPEG Path</label>
+                <input type="text" class="form-control" placeholder="Location" aria-label="Location" id="path">
+            </div>
+            <button type="submit" class="btn btn-primary" id="submit">Save</button>
+        </form>
+    </div>
+</body>
+
+<script type="text/javascript" src="lib/bootstrap/bootstrap.min.js"></script> 
+</html>

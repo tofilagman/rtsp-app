@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>RTSP App</title>
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <table class="main-table">
+        <tr>
+            <td colspan="3" rowspan="3">
+                <canvas id="canvas-1" class="holder main"></canvas>
+            </td>
+            <td><canvas id="canvas-2" class="holder left child"></canvas></td>
+        </tr>
+        <tr>
+            <td><canvas id="canvas-3" class="holder left child"></canvas> </td>
+        </tr>
+        <tr>
+            <td><canvas id="canvas-4" class="holder left child"></canvas> </td>
+        </tr>
+
+        <tr>
+            <td><canvas id="canvas-5" class="holder bottom child"></canvas> </td>
+            <td><canvas id="canvas-6" class="holder bottom child"></canvas> </td>
+            <td><canvas id="canvas-7" class="holder bottom child"></canvas> </td>
+            <td><canvas id="canvas-8" class="holder bottom-left child"></canvas> </td>
+        </tr>
+    </table>
+</body>
+
+<script type="text/javascript" src="lib/jsmpeg.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap/bootstrap.min.js"></script>
+<script>
+    const mpc = [];
+
+    const playAll = () => {
+        for (i = 1; i <= 8; i++) {
+            mpc.push(new JSMpeg.Player('ws://localhost:999' + i, {
+                canvas: document.getElementById('canvas-' + i)
+            }));
+        }
+    }
+
+    const stopAll = () => {
+        for(p of mpc) 
+            p.destroy();
+        mpc.splice(0, mpc.length);
+    }
+
+    playAll();
+
+    const elems = document.getElementsByClassName('child');
+    for (elem of elems) {
+        elem.addEventListener('dblclick', evt => { 
+            const ntId = evt.target.id;
+            const main = document.getElementsByClassName('main')[0]; 
+            evt.target.id = main.id;
+            main.id = ntId;
+            stopAll();
+            playAll();
+        });
+    }
+
+</script>
+
+</html>

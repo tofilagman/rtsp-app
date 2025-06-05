@@ -1,0 +1,41 @@
+body {
+    overflow: hidden;
+}
+ 
+.main-table {
+    width: 100vw;
+    height: 100vh; 
+    border-collapse: collapse;
+    border-spacing: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.main-table td {  
+    padding: 0;
+    margin: 0;
+}
+
+.holder {
+    position: relative; 
+}
+
+.holder.main {
+    width: 75vw;
+    height: 75vh;
+}
+
+.holder.left {
+    width: 100%;
+    height: 25vh;
+}
+
+.holder.bottom {
+    width: 25vw;
+    height: 25vh;
+}
+
+.holder.bottom-left {
+    width: 25vw;
+    height: 25vh;
+}
