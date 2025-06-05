@@ -37,7 +37,9 @@ const startStream = (index) => {
 }
 
 const stopStream = () => {
-    for (stream of streams) stream.stop();
+    for (stream of streams) {
+        stream.stop();
+    }
     streams.splice(0, streams.length);
 }
 

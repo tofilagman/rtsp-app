@@ -136,6 +136,7 @@ class VideoStream extends EventEmitter {
   stop() {
       this.server.close();
       this.httpServer.shutdown(function() {})
+      this.mpeg1Muxer.close();
   }
 
   getPortForMiddlewareServer(wsPort){
