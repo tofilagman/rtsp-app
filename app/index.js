@@ -1,6 +1,7 @@
-const { ipcMain, app, BrowserWindow, Menu } = require('electron/main')
+const { ipcMain, app, BrowserWindow, Menu } = require('electron/main');
 const path = require('node:path')
 const Store = require('electron-store').default;
+const server = require('./server');
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = true
 
@@ -79,9 +80,11 @@ function createWindow() {
     simpleFullscreen: true
   })
 
-  store.onDidAnyChange(x => { 
-    win.webContents.send('onStoreChanged', true);
+  store.onDidAnyChange(x => {
+    startServer();
   });
+
+  startServer();
 
   win.loadFile(path.join('src', 'index.html'))
 }
@@ -98,6 +101,17 @@ function createSettingWindow() {
   })
 
   win.loadFile(path.join('src', 'setting.html'))
+}
+
+function startServer() {
+  server.init({
+    FFMPEG: store.get('FFMPEG'),
+    USER: store.get('USER'),
+    PASSWORD: store.get('PASSWORD'),
+    IPADDRESS: store.get('IPADDRESS'),
+    PORT: store.get('PORT')
+  });
+  server.start();
 }
 
 app.whenReady().then(() => {
